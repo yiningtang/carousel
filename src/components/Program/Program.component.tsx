@@ -1,5 +1,5 @@
 import { FONT_COLOUR, LoadingStatus, WHITE } from "@src/models/constants";
-import { Movie } from "@src/models/movieCarouselState.model";
+import { Movie, MoviesContextType } from "@src/models/movieCarouselState.model";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MoviesContext } from "../App";
@@ -15,12 +15,7 @@ import Error from "../Error";
 
 export default function Program() {
   const { id } = useParams();
-  const { movies, getMovie, loading } = useContext<{
-    movies: Movie[];
-    setMovies: (movies: Movie[]) => void;
-    getMovie: (id: string) => Movie | Record<string, never>;
-    loading: LoadingStatus;
-  }>(MoviesContext);
+  const { movies, getMovie, loading } = useContext<MoviesContextType>(MoviesContext);
   const [movie, setMovie] = useState<Movie>();
   const [imgSkeleton, toggleImgSkeletonVisibility] = useState<boolean>(true);
   useEffect(() => {
@@ -35,7 +30,7 @@ export default function Program() {
         <ProgramLoading />
       )}
       {movie && loading === LoadingStatus.Completed && (
-        <ProgramWrapper $fontColour={WHITE}>
+        <ProgramWrapper data-testid='program' $fontColour={WHITE}>
           {imgSkeleton && (
             <PlaceHolder
               className="image-placeholder"

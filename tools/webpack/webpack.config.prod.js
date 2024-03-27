@@ -13,7 +13,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
     alias: {
-      // Custom Aliases
       ...require('./webpack.aliases'),
     },
   },

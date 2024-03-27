@@ -1,8 +1,6 @@
 import { LoadingStatus } from "@src/models/constants";
 import {
-  initialMovieCarouselState,
   Movie,
-  MovieCarouselState,
 } from "@src/models/movieCarouselState.model";
 import React, { useContext, useEffect, useState } from "react";
 import { MoviesContext } from "../App";
@@ -26,30 +24,7 @@ export default function Carousel() {
   const movieCarouselReady =
     loading === LoadingStatus.Completed &&
     Array.isArray(activeMovies.movies) &&
-    activeMovies.movies.length > 0;
-
-  useEffect(() => {
-    // setMoviesState((prevStatus) => ({
-    //   ...prevStatus,
-    //   loading: LoadingStatus.Loading,
-    // }));
-    // getMovies()
-    //   .then((movies) => {
-    //     setMovies(movies);
-    //     setMoviesState({
-    //       movies: movies.map((movie) => ({ ...movie, ...{ loading: true } })),
-    //       loading: LoadingStatus.Completed,
-    //       error: false,
-    //     });
-    //   })
-    //   .catch((_error) =>
-    //     setMoviesState({
-    //       movies: [],
-    //       loading: LoadingStatus.Failed,
-    //       error: true,
-    //     })
-    //   );
-  }, [movies]);
+    activeMovies.movies.length > 0 && !movieCarouselError;
 
   useEffect(() => {
     if (Array.isArray(movies) && movies.length > 0) {
@@ -69,11 +44,12 @@ export default function Carousel() {
   return (
     <CarouselContainer>
       {movieCarouselLoading && <CarouselLoading />}
-      {!movieCarouselError && (
+      {movieCarouselReady && (
         <CarouselList
           movies={activeMovies.movies}
           start={activeMovies.start}
           end={activeMovies.end}
+          isLast={!movies[activeMovies.end+1]}
           rotateMovieSlides={(start: number, end: number) =>
             movieSlideRotateHandler(start, end)
           }

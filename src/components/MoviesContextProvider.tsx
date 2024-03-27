@@ -2,17 +2,12 @@ import { LoadingStatus } from "@src/models/constants";
 import { Movie } from "@src/models/movieCarouselState.model";
 import React, { useEffect, useState } from "react";
 import { MoviesContext } from "./App";
-import Movies from "./Carousel/data.json";
-const promiseGen = () =>
-  new Promise((res, rej) => setTimeout(() => res(Movies), 1000));
 
 async function getMovies(): Promise<Movie[]> {
   // eslint-disable-next-line no-useless-catch
   try {
-    // const moviesJson = await fetch(`data.json`);
-    // const movies = await moviesJson.json();
-    const movies = (await promiseGen()) as Movie[];
-    console.log(movies)
+    const moviesJson = await fetch(`data.json`);
+    const movies = await moviesJson.json();
     return movies;
   } catch (error) {
     throw error;

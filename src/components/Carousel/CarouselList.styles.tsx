@@ -10,20 +10,18 @@ export const ImgWrapper = styled.ul`
 `;
 
 export const ImgItem = styled.li`
-@keyframes easeIn {
-  0% {
-    width: 10%;
-  }
-  100% {
-    width: 100%;
-  }
-}
   position: relative;
   padding: 0 1em;
   &:nth-of-type(1) {
     padding-left: 0;
   }
-  animation: easeIn 2s;
+  .image-placeholder {
+    width: 16vw;
+    height: 44vh;
+    background-size: 100% 100%;
+    background-position: top;
+    background-color: grey;
+  }
 `;
 
 export const ImgGroup = styled.input<{
@@ -41,10 +39,12 @@ export const ImgGroup = styled.input<{
 
 export const Img = styled.div<{$url: string, $loadingColor: string}>`
   width: 16vw;
-  height: 60vh;
+  height: 44vh;
   background: no-repeat url(${props => props.$url});
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: top;
+  position: absolute;
+  top: 0;
 `;
 
 export const ImgPlaceholderItem = styled.li<{ $bgColour: string }>`
@@ -64,9 +64,11 @@ export const ImgPlaceholderItem = styled.li<{ $bgColour: string }>`
   }
   .image-placeholder {
     width: 16vw;
-    height: 60vh;
-      animation: fadeIn 2s;
-      background: ${(props) => props.$bgColour};
+    height: 44vh;
+    background-size: 100% 100%;
+    background-position: top;
+    animation: fadeIn 2s;
+    background-color: ${(props) => props.$bgColour};
   }
 `;
 

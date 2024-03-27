@@ -26,6 +26,9 @@ export const initialMovieCarouselState: MovieCarouselState = {
     error: false
 }
 
-export enum MovieAttribues {
-
-}
+export type MoviesContextType = {
+    movies: Movie[];
+    setMovies: (movies: Movie[]) => void;
+    getMovie: (id: string) => Movie | Record<string, never>;
+    loading: LoadingStatus;
+  }

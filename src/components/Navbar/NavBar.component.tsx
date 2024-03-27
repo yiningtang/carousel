@@ -3,7 +3,7 @@ import Styles from "./NavBar.styles";
 import LogoImg from "./Logo/Logo.component";
 import styled from "styled-components";
 import { FONT_COLOUR, WHITE } from "@src/models/constants";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Navbar({
   options,

@@ -17,8 +17,6 @@ module.exports = {
   stats: 'errors-warnings',
   devtool: 'cheap-module-source-map',
   devServer: {
-    // contentBase: path.resolve(__dirname, 'dist'),
-    // historyApiFallback: { index: '/index.html', disableDotRule: true },
     historyApiFallback: true,
   },
   optimization: {
