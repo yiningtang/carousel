@@ -14,6 +14,7 @@ async function getMovies(): Promise<Movie[]> {
   }
 }
 
+
 export default function ContextProvider({
   children,
 }: {
@@ -29,9 +30,8 @@ export default function ContextProvider({
         setMovies(movies);
         toggleLoading(LoadingStatus.Completed);
       })
-      .catch((error) => {
+      .catch(() => {
         toggleLoading(LoadingStatus.Failed);
-        console.log(error);
       });
   }, []);
 
